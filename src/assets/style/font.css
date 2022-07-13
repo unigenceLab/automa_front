@@ -1,0 +1,21 @@
+@charset 'utf-8';
+
+@font-face {
+    font-family: 'NanumSquare_acR';
+    font-weight: 400;
+    src: url(../font/NanumSquare_acR.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'NanumSquareOTF_acEB';
+    font-weight: 400;
+    src: url(../font/NanumSquareOTF_acEB.woff) format('woff');
+}
+
+* , body {
+    font-family: 'NanumSquare_acR';
+    color: #262626;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}

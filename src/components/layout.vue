@@ -55,7 +55,7 @@
 export default {
     data() {
         return {
-            
+
         }
     },
     methods:{
@@ -78,6 +78,7 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+    @import '@/assets/style/font.css';
     @import '@/assets/style/layout.scss';
 
         .btn-toggle {

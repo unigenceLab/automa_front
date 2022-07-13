@@ -40,7 +40,7 @@ ul {
     align-items: center;
 }
     .headingwrap {
-        width: 248px;
+        width: 250px;
         height: 50px;
         border-right: 1px solid #ccc;
     }
@@ -54,6 +54,7 @@ ul {
 /* 좌측 메뉴 스타일 */
 .leftmenu {
     width: 250px;
+    min-width: 250px;
     height: calc(100vh - 50px);
     padding: 10px;
     border-right: 1px solid #ccc;
@@ -63,7 +64,7 @@ ul {
 
 /* 본문 스타일 */
 .content {
-    width: calc(100vw - 251px);
+    width: calc(100vw - 252px);
     height: calc(100vh - 50px);
     overflow: auto;
 }
