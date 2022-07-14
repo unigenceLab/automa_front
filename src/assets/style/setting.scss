@@ -153,12 +153,14 @@ input[type="text"].textright {
 
 
 /* 버튼용 스타일 */
+button {
+    font-weight: bold;
+}
 .btnwrap {
     text-align: center;
     padding-top: 10px;
 }
 .prebtn {
-    all: unset;
     padding: 5px 20px;
     background: #b7b8c7;
     color: #fff;
@@ -181,11 +183,40 @@ input[type="text"].textright {
     background: #b7b8c7
 }
 
+
+.smallbtn {
+    width: 35px;
+    height: 35px;
+    font-size: 25px;
+
+    i {
+        color: #222;
+    }
+}
+
+.smallbtn2 {
+    width: 45px;
+    padding: 2px 0;
+    background: #b7b8c7;
+    color: #fff;
+}
+
 /* 좌우 정렬용 */
 .flexwrap::after {
     display: block;
     content: '';
     clear: both;
+}
+
+
+/* 스크롤 테이블 감싸는 스타일 */
+.scrollwrap {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    overflow-y: auto;
+    background: #f9f9f9;
+    border: 1px solid #c5c7d8;
 }
 
 
