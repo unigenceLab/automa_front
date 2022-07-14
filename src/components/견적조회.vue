@@ -152,8 +152,19 @@
     </div>
 </template>
 <script>
+// import DetailModal from './모달/상세입력모달1.vue'
 export default {
-    
+    components: {
+        // DetailModal,
+    },
+    data() {
+        return {
+
+        }
+    },
+    methods: {
+
+    },
 }
 </script>
 <style scoped lang="scss">

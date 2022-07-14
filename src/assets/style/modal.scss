@@ -2,7 +2,6 @@
 
 .modal {
     position: absolute;
-    display: none;
     top: 0;
     left: 0;
     right: 0;
@@ -10,9 +9,6 @@
     background: rgba(0,0,0,0.3);
     z-index: 1000;
 }
-    .modal.on {
-        display: block;
-    }
 
 .modalall {
     position: absolute;
@@ -24,8 +20,11 @@
     transform: translate(-50%, -50%);
     background: rgba(255,255,255,0.9);
     border-radius: 5px;
-    width: 600px;
-    height: 300px;
+    width: calc(100% - 400px);
+    min-width: 600px;
+    height: calc(100% - 30px);
+    padding: 10px 30px;
+    overflow: auto;
 }
 
 .modalbtn {

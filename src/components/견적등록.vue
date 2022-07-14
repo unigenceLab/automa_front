@@ -1,5 +1,11 @@
 <template>
     <div>
+        <!-- ↓↓↓↓ 입력 버튼을 누르면 뜨는 모달창 ↓↓↓↓ -->
+        <!-- <DetailModal1></DetailModal1> -->
+        <!-- <DetailModal2></DetailModal2> -->
+        <!-- <DetailModal3></DetailModal3> -->
+        <!-- <DetailModal4></DetailModal4> -->
+        
         <h2>프로젝트명 견적서</h2>
         <!-- 전체 wrap -->
         <div class="all-wrap">
@@ -164,8 +170,25 @@
     </div>
 </template>
 <script>
+import DetailModal1 from './모달/상세입력모달1.vue'
+import DetailModal2 from './모달/상세입력모달2.vue'
+import DetailModal3 from './모달/상세입력모달3.vue'
+import DetailModal4 from './모달/상세입력모달4.vue'
 export default {
-    
+    components: {
+        DetailModal1,
+        DetailModal2,
+        DetailModal3,
+        DetailModal4,
+    },
+    data() {
+        return {
+
+        }
+    },
+    methods: {
+
+    },
 }
 </script>
 <style scoped lang="scss">
