@@ -214,8 +214,8 @@
                 
                 <!-- 이전/다음 버튼 -->
                 <div style="display: flex; justify-content: space-between; padding: 10px 0;">
-                    <button class="prebtn">이전</button>
-                    <button class="prebtn">다음</button>
+                    <button class="prebtn" @click="$router.push({path:'/register/1'})">이전</button>
+                    <button class="prebtn" @click="$router.push({path:'/register/3'})">다음</button>
                 </div>
 
             </div>

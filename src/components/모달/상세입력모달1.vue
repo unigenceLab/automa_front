@@ -72,7 +72,7 @@
                 
                 <!-- 이전/다음 버튼 -->
                 <div style="display: flex; justify-content: flex-end; padding: 10px 0;">
-                    <button class="prebtn">다음</button>
+                    <button class="prebtn" @click="$router.push({path:'/register/2'})">다음</button>
                 </div>
             </div>
         </div>

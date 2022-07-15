@@ -1,10 +1,6 @@
 <template>
-    <div>
-        <!-- ↓↓↓↓ 입력 버튼을 누르면 뜨는 모달창 ↓↓↓↓ -->
-        <!-- <DetailModal1></DetailModal1> -->
-        <!-- <DetailModal2></DetailModal2> -->
-        <!-- <DetailModal3></DetailModal3> -->
-        <!-- <DetailModal4></DetailModal4> -->
+    <div style="position:relative">
+
         
         <h2>프로젝트명 견적서</h2>
         <!-- 전체 wrap -->
@@ -58,7 +54,11 @@
                     </table>
                     <!-- 버튼 -->
                     <div class="btnwrap">
-                        <button class="bigbtn" style="margin-right: 5px;">AOV추가</button>
+                        <button class="bigbtn" style="margin-right: 5px;" 
+                        @click="showModal=!showModal,
+                                $router.push({path:'/register/1'}).catch(()=>{})">
+                        AOV추가
+                        </button>
                         <button class="bigbtn" style="margin-left: 5px;">ACV추가</button>
                     </div>
                 </div>
@@ -167,27 +167,34 @@
             </div>
 
         </div>
+
+        <!-- 모달창 -->
+        <div class="btn-close" v-show="showModal">
+            <button>
+                <i class="fas fa-window-close fa-3x" 
+                @click="showModal=!showModal,
+                $router.push({path:'/register'}).catch(()=>{})">
+                </i>
+            </button>
+        </div>
+        <div class="modalView" v-show="showModal">
+            <router-view ></router-view>
+        </div>
     </div>
 </template>
 <script>
-import DetailModal1 from './모달/상세입력모달1.vue'
-import DetailModal2 from './모달/상세입력모달2.vue'
-import DetailModal3 from './모달/상세입력모달3.vue'
-import DetailModal4 from './모달/상세입력모달4.vue'
+
 export default {
     components: {
-        DetailModal1,
-        DetailModal2,
-        DetailModal3,
-        DetailModal4,
+       
     },
     data() {
         return {
-
+            showModal:false
         }
     },
     methods: {
-
+       
     },
 }
 </script>
@@ -198,5 +205,22 @@ export default {
     .tdbtn {
         width: 120px;
         text-align: center;
+    }
+    .modalView{
+        position: absolute;
+        width: 90%;
+        left: 5%;
+        top: 20%;
+        min-height: 750px;
+        
+        
+    }
+    .btn-close{
+        position: absolute;
+        left: 84%;
+        top: 16%;
+        float: right;
+        margin-right: 260px;
+    
     }
 </style>
