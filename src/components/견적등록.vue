@@ -1,5 +1,5 @@
 <template>
-    <div style="position:relative">
+    <div>
 
         
         <h2>프로젝트명 견적서</h2>
@@ -206,6 +206,7 @@ export default {
         width: 120px;
         text-align: center;
     }
+    /* 
     .modalView{
         position: absolute;
         width: 90%;
@@ -214,13 +215,11 @@ export default {
         min-height: 750px;
         
         
-    }
+    } */
     .btn-close{
         position: absolute;
-        left: 84%;
-        top: 16%;
-        float: right;
-        margin-right: 260px;
-    
+        right: 152px;
+        top: 10px;
+        z-index: 1500;
     }
 </style>
