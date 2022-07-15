@@ -16,32 +16,16 @@
                                 구동기사양
                             </td>
                             <td>
-                                <select name="" id="">
-                                    <option value="">
-                                        Positioner
+                                <select v-model="selected">
+                                    <option value="">--선택하세요--</option>
+                                    <option v-for="item in 종류" :key="item" :value="item">
+                                        {{item}}
                                     </option>
-                                    <option value="">
-                                        Solenoid Valve
-                                    </option>
-                                    <option value="">
-                                       Limit Switch
-                                    </option>
-                                    <option value="">
-                                        Filter Regulator
-                                    </option>
-                                    <option value="">
-                                        Speed Controller
-                                    </option>
-                                    <option value="">
-                                        Manual Handwheel
-                                    </option>
-                                    <option value="">
-                                        Quick Valve
-                                    </option>
+                                    
                                 </select>
                             </td>
                             <td class="throle" style="text-align: center;">
-                                <button style="width: 100%;">
+                                <button style="width: 100%;"  @click="addTo()">
                                     추가
                                 </button>
                             </td>
@@ -50,14 +34,13 @@
                 </div>
 
 
-                <!-- ↓↓↓↓ 액세서리 견적테이블 샘플들 ↓↓↓↓ -->
-                <!-- 액세서리 견적테이블 Positioner -->
                 <div
                 style="
                     width: 100%;
                     padding: 10px 0;
                     border-bottom: 1px dashed #d9d9d9;
-                ">  
+                "
+                v-for="(item,s) in selectors" :key="s">  
                     <div class="scrollwrap minwrap">
                         <table class="scrolltb" style="width: 100%;">
                             <tr>
@@ -70,314 +53,43 @@
                                 <th>Input Signal</th>
                                 <th>Feedback</th>
                                 <th>Enclosure</th>
+                                <th></th>
                             </tr>
-                            <tr>
-                                <td>1</td>
+                            <tr v-for="(item2,i) in item.depth2" :key="i">
+                                <td>{{i+1}}</td>
                                 <td class="throle">
-                                    Positioner
+                                    {{item2.구분}}
                                 </td>
                                 <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
+                                    <input type="text" v-model="item2.TYPE" @input="accesory(item2,i)">
                                 </td>
                                 <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
+                                    <input type="text" v-model="item2.MODEL" @input="accesory(item2,i)">
                                 </td>
                                 <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
+                                    <input type="text" v-model="item2.MFR" @input="accesory(item2,i)">
                                 </td>
                                 <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
+                                    <input type="text" v-model="item2.AIR_CONNECTION" @input="accesory(item2,i)">
                                 </td>
                                 <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
+                                    <input type="text" v-model="item2.INPUT_SIGNAL" @input="accesory(item2,i)">
                                 </td>
                                 <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
+                                    <input type="text" v-model="item2.FEEDBACK" @input="accesory(item2,i)">
                                 </td>
                                 <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
+                                    <input type="text" v-model="item2.ENCLOSURE" @input="accesory(item2,i)">
+                                </td>
+                                <td style="text-align:center">
+                                    <button @click="removeRow(i,s)">X</button>
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </div>
 
-                <!-- 액세서리 견적테이블 Solenoid Valve -->
-                <div
-                style="
-                    width: 100%;
-                    padding: 10px 0;
-                    border-bottom: 1px dashed #d9d9d9;
-                ">  
-                    <div class="scrollwrap minwrap">
-                        <table class="scrolltb" style="width: 100%;">
-                            <tr>
-                                <th style="width: 30px;"></th>
-                                <th>구분</th>
-                                <th>Model</th>
-                                <th>Mfr.</th>
-                                <th>Conduit</th>
-                                <th>Air Connection</th>
-                                <th>Power Supply</th>
-                                <th>Enclosure</th>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td class="throle">
-                                    Solenoid Valve
-                                </td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- 액세서리 견적테이블 Limit Switch -->
-                <div
-                style="
-                    width: 100%;
-                    padding: 10px 0;
-                    border-bottom: 1px dashed #d9d9d9;
-                ">  
-                    <div class="scrollwrap minwrap">
-                        <table class="scrolltb" style="width: 100%;">
-                            <tr>
-                                <th style="width: 30px;"></th>
-                                <th>구분</th>
-                                <th>Model</th>
-                                <th>Mfr.</th>
-                                <th>Conduit</th>
-                                <th>Switch Type</th>
-                                <th>Enclosure</th>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td class="throle">
-                                    Limit Switch
-                                </td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- 액세서리 견적테이블 Filter Regulator -->
-                <div
-                style="
-                    width: 100%;
-                    padding: 10px 0;
-                    border-bottom: 1px dashed #d9d9d9;
-                ">  
-                    <div class="scrollwrap minwrap">
-                        <table class="scrolltb" style="width: 100%;">
-                            <tr>
-                                <th style="width: 30px;"></th>
-                                <th>구분</th>
-                                <th>Model</th>
-                                <th>Mfr.</th>
-                                <th>Conduit</th>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td class="throle">
-                                    Filter Regulator
-                                </td>
-                               
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-
-                <!-- 액세서리 견적테이블 Speed Controller -->
-                <div
-                style="
-                    width: 100%;
-                    padding: 10px 0;
-                    border-bottom: 1px dashed #d9d9d9;
-                ">  
-                    <div class="scrollwrap minwrap">
-                        <table class="scrolltb" style="width: 100%;">
-                            <tr>
-                                <th style="width: 30px;"></th>
-                                <th>구분</th>
-                                <th>Model</th>
-                                <th>Mfr.</th>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td class="throle">
-                                    Speed Controller
-                                </td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- 액세서리 견적테이블 Manual Handwheel -->
-                <div
-                style="
-                    width: 100%;
-                    padding: 10px 0;
-                    border-bottom: 1px dashed #d9d9d9;
-                ">  
-                    <div class="scrollwrap minwrap">
-                        <table class="scrolltb" style="width: 100%;">
-                            <tr>
-                                <th style="width: 30px;"></th>
-                                <th>구분</th>
-                                <th>Model</th>
-                                <th>Mfr.</th>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td class="throle">
-                                    Manual Handwheel
-                                </td>
-                               
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- 액세서리 견적테이블 Quick Valve -->
-                <div
-                style="
-                    width: 100%;
-                    padding: 10px 0;
-                    border-bottom: 1px dashed #d9d9d9;
-                ">  
-                    <div class="scrollwrap minwrap">
-                        <table class="scrolltb" style="width: 100%;">
-                            <tr>
-                                <th style="width: 30px;"></th>
-                                <th>구분</th>
-                                <th>Model</th>
-                                <th>Mfr.</th>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td class="throle">
-                                    Quick Valve
-                                </td>
-                               
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="" id="">
-                                        <option value="">-선택하세요-</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
+             
 
                 <!-- 이전/다음 버튼 -->
                 <div style="display: flex; justify-content: space-between; padding: 10px 0;">
@@ -390,7 +102,35 @@
 </template>
 <script>
 export default {
-    
+    data() {
+        return {
+            종류:['Positioner','Solenoid Valve','Limit Switch','Filter Regulator','Speed Controller','Manual Handwheel','Quick Valve'],
+            selected : "",
+            selectors:[],
+            acc:{}
+        }
+    },
+    methods: {
+        addTo(){
+            if(this.selected != ""){
+                var item = this.selected
+                var index = this.selectors.findIndex(x=>x.depth1 == item)
+                if(index == -1){
+                    this.selectors.push({depth1:item,depth2:[{구분:item}]})
+                }else{
+                    this.selectors[index].depth2.push({구분:item})
+                }
+            }
+        },
+        removeRow(i,s){
+            this.selectors[s].depth2.splice(i,1)
+        },
+       async accesory(item,i){
+            item.견적번호 = this.$route.query.num
+            item.순번 = (i+1).toString()
+            await this.axios.post(this.$uri + "/accesory",item)
+        }
+    },
 }
 </script>
 <style scoped lang="scss">

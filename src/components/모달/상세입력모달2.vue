@@ -2,7 +2,6 @@
     <div class="modal">
         <div class="modalall">
             <div style="width: 100%; height: 100%;">
-                
                 <!-- 좌우 테이블 -->
                 <div
                 style="
@@ -15,27 +14,39 @@
                         </tr>
                         <tr>
                             <td class="throle">body type</td>
-                            <td colspan="3"></td>
+                            <td colspan="3">
+                                <input type="text" id="chk" v-model="bonnet.BODY_TYPE" @input="fn_bonnet()">
+                                </td>
                         </tr>
                         <tr>
                             <td class="throle">body size</td>
-                            <td colspan="3"></td>
+                            <td colspan="3">
+                                <input type="text" id="chk" v-model="bonnet.BODY_SIZE" @input="fn_bonnet()">
+                            </td>
                         </tr>
                         <tr>
                             <td class="throle">pr. rating</td>
-                            <td colspan="3"></td>
+                            <td colspan="3">
+                                <input type="text" id="chk" v-model="bonnet.PR_RATING" @input="fn_bonnet()">
+                            </td>
                         </tr>
                         <tr>
                             <td class="throle">end connection</td>
-                            <td colspan="3"></td>
+                            <td colspan="3">
+                                <input type="text" id="chk" v-model="bonnet.END_CONNECTION" @input="fn_bonnet()">
+                            </td>
                         </tr>
                         <tr>
                             <td class="throle">bonnet type</td>
-                            <td colspan="3"></td>
+                            <td colspan="3">
+                                <input type="text" id="chk" v-model="bonnet.BONNET_TYPE" @input="fn_bonnet()">
+                            </td>
                         </tr>
                         <tr>
                             <td class="throle">flow direction</td>
-                            <td colspan="3"></td>
+                            <td colspan="3">
+                                <input type="text" id="chk" v-model="bonnet.FLOW_DIRECTION" @input="fn_bonnet()">
+                            </td>
                         </tr>
                     </table>
                     
@@ -45,35 +56,51 @@
                         </tr>
                         <tr>
                             <td class="throle">body/bonnet</td>
-                            <td colspan="3"></td>
+                            <td colspan="3">
+                                <input type="text" id="chk" v-model="material.BONNET" @input="fn_material()">
+                            </td>
                         </tr>
                         <tr>
                             <td class="throle">stem</td>
-                            <td colspan="3"></td>
+                            <td colspan="3">
+                                <input type="text" id="chk" v-model="material.STEM" @input="fn_material()">
+                            </td>
                         </tr>
                         <tr>
                             <td class="throle">plug / disc / ball</td>
-                            <td colspan="3"></td>
+                            <td colspan="3">
+                                <input type="text" id="chk" v-model="material.PLUG_DISC_BALL" @input="fn_material()">
+                            </td>
                         </tr>
                         <tr>
                             <td class="throle">seat ring</td>
-                            <td colspan="3"></td>
+                            <td colspan="3">
+                                <input type="text" id="chk" v-model="material.SEAT_RING" @input="fn_material()">
+                            </td>
                         </tr>
                         <tr>
                             <td class="throle">cage / retainer</td>
-                            <td colspan="3"></td>
+                            <td colspan="3">
+                                <input type="text" id="chk" v-model="material.CAGE_RETAINER" @input="fn_material()">
+                            </td>
                         </tr>
                         <tr>
                             <td class="throle">balance seal</td>
-                            <td colspan="3"></td>
+                            <td colspan="3">
+                                <input type="text" id="chk" v-model="material.BALANCE_SEAL" @input="fn_material()">
+                            </td>
                         </tr>
                         <tr>
                             <td class="throle">packing</td>
-                            <td colspan="3"></td>
+                            <td colspan="3">
+                                <input type="text" id="chk" v-model="material.PACKING" @input="fn_material()">
+                            </td>
                         </tr>
                         <tr>
                             <td class="throle">gasket</td>
-                            <td colspan="3"></td>
+                            <td colspan="3">
+                                <input type="text" id="chk" v-model="material.GASKET" @input="fn_material()">
+                            </td>
                         </tr>
                     </table>
 
@@ -104,25 +131,37 @@
                             </tr>
                             <tr>
                                 <td class="throle">trim type</td>
-                                <td colspan="3"></td>
+                                <td colspan="3">
+                                    <input type="text" id="chk" v-model="valueTrim.TRIM_TYPE" @input="fn_valueTrim()">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="throle">port size</td>
-                                <td colspan="3"></td>
+                                <td colspan="3">
+                                    <input type="text" id="chk" v-model="valueTrim.PORT_SIZE" @input="fn_valueTrim()">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="throle">flow character</td>
-                                <td></td>
+                                <td>
+                                    <input type="text" id="chk" v-model="valueTrim.FLOW_CHARACTER" @input="fn_valueTrim()">
+                                </td>
                                 <td class="throle" style="text-align: center;">rated cv</td>
-                                <td></td>
+                                <td>
+                                    <input type="text" id="chk" v-model="valueTrim.PLUG_TYPE" @input="fn_valueTrim()">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="throle">plug type</td>
-                                <td colspan="3"></td>
+                                <td colspan="3">
+                                    <input type="text" id="chk" v-model="valueTrim.RATED_CV" @input="fn_valueTrim()">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="throle">seat leakage</td>
-                                <td colspan="3"></td>
+                                <td colspan="3">
+                                    <input type="text" id="chk" v-model="valueTrim.SEAT_LEAKIAGE" @input="fn_valueTrim()">
+                                </td>
                             </tr>
                         </table> 
 
@@ -135,19 +174,27 @@
                             </tr>
                             <tr>
                                 <td class="throle">type</td>
-                                <td></td>
+                                <td>
+                                    <input type="text" id="chk" v-model="diaphragm_actuator.TYPE" @input="fn_diaphragm_actuator()">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="throle">maker</td>
-                                <td></td>
+                                <td>
+                                    <input type="text" id="chk" v-model="diaphragm_actuator.MAKER" @input="fn_diaphragm_actuator()">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="throle">model</td>
-                                <td></td>
+                                <td>
+                                    <input type="text" id="chk" v-model="diaphragm_actuator.MODEL" @input="fn_diaphragm_actuator()">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="throle">fail position</td>
-                                <td></td>
+                                <td>
+                                    <input type="text" id="chk" v-model="diaphragm_actuator.FAIL_POSITION" @input="fn_diaphragm_actuator()">
+                                </td>
                             </tr>
                         </table>
 
@@ -159,19 +206,27 @@
                             </tr>
                             <tr>
                                 <td class="throle">type</td>
-                                <td></td>
+                                <td>
+                                    <input type="text" id="chk" v-model="motor.TYPE" @input="fn_motor()">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="throle">maker</td>
-                                <td></td>
+                                <td>
+                                    <input type="text" id="chk" v-model="motor.MAKER" @input="fn_motor()">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="throle">model</td>
-                                <td></td>
+                                <td>
+                                    <input type="text" id="chk" v-model="motor.MODEL" @input="fn_motor()">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="throle">fail position</td>
-                                <td></td>
+                                <td>
+                                    <input type="text" id="chk" v-model="motor.FAIL_POSITION" @input="fn_motor()">
+                                </td>
                             </tr>
                         </table>
 
@@ -184,27 +239,39 @@
                             </tr>
                             <tr>
                                 <td class="throle">type</td>
-                                <td></td>
+                                <td>
+                                    <input type="text" id="chk" v-model="motor_actuator.TYPE" @input="fn_motor_actuator()">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="throle">maker</td>
-                                <td></td>
+                                <td>
+                                    <input type="text" id="chk" v-model="motor_actuator.MAKER" @input="fn_motor_actuator()">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="throle">model</td>
-                                <td></td>
+                                <td>
+                                    <input type="text" id="chk" v-model="motor_actuator.MODEL" @input="fn_motor_actuator()">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="throle">fail position</td>
-                                <td></td>
+                                <td>
+                                    <input type="text" id="chk" v-model="motor_actuator.FAIL_POSITION" @input="fn_motor_actuator()">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="throle">rated current</td>
-                                <td></td>
+                                <td>
+                                    <input type="text" id="chk" v-model="motor_actuator.RATED_CURRENT" @input="fn_motor_actuator()">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="throle">speed</td>
-                                <td></td>
+                                <td>
+                                    <input type="text" id="chk" v-model="motor_actuator.SPEED" @input="fn_motor_actuator()">
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -215,7 +282,7 @@
                 <!-- 이전/다음 버튼 -->
                 <div style="display: flex; justify-content: space-between; padding: 10px 0;">
                     <button class="prebtn" @click="$router.push({path:'/register/1'})">이전</button>
-                    <button class="prebtn" @click="$router.push({path:'/register/3'})">다음</button>
+                    <button class="prebtn" @click="nullCheck">다음</button>
                 </div>
 
             </div>
@@ -224,7 +291,58 @@
 </template>
 <script>
 export default {
-    
+    data() {
+        return {
+            bonnet:{},
+            material:{},
+            valueTrim:{},
+            diaphragm_actuator:{},
+            motor:{},
+            motor_actuator:{},
+        }
+    },
+    methods: {
+       async fn_bonnet(){
+            this.bonnet.견적번호 = this.$route.query.num
+            await this.axios.post(this.$uri + "/bonnet",this.bonnet)
+        },
+        async fn_material(){
+            this.material.견적번호 = this.$route.query.num
+            await this.axios.post(this.$uri + "/material",this.material)
+        },
+        async fn_valueTrim(){
+            this.valueTrim.견적번호 = this.$route.query.num
+            await this.axios.post(this.$uri + "/valueTrim",this.valueTrim)
+        },
+        async fn_diaphragm_actuator(){
+            this.diaphragm_actuator.견적번호 = this.$route.query.num
+            await this.axios.post(this.$uri + "/diaphragm_actuator",this.diaphragm_actuator)
+        },
+        async fn_motor(){
+            this.motor.견적번호 = this.$route.query.num
+            await this.axios.post(this.$uri + "/motor",this.motor)
+        },
+        async fn_motor_actuator(){
+            this.motor_actuator.견적번호 = this.$route.query.num
+            await this.axios.post(this.$uri + "/motor_actuator",this.motor_actuator)
+        },
+         nullCheck(){
+            var val = false
+            var nullchk =  document.querySelectorAll('#chk')
+            for(var i=0; i<nullchk.length; i++){
+                if(nullchk[i].value != ""){
+                    val = true
+                    break;
+                }
+             }
+
+             if(val != true){
+                alert("입력 값이 없습니다")
+             }else{
+                this.$router.push({path:'/register/3', query: {num:this.$route.query.num}})
+             }
+        }
+    },
 }
 </script>
 <style scoped lang="scss">

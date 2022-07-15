@@ -56,7 +56,7 @@
                     <div class="btnwrap">
                         <button class="bigbtn" style="margin-right: 5px;" 
                         @click="showModal=!showModal,
-                                $router.push({path:'/register/1'}).catch(()=>{})">
+                                $router.push({path:'/register/1',query:{sort:'AOV'}}).catch(()=>{})">
                         AOV추가
                         </button>
                         <button class="bigbtn" style="margin-left: 5px;">ACV추가</button>
@@ -178,7 +178,9 @@
             </button>
         </div>
         <div class="modalView" v-show="showModal">
-            <router-view ></router-view>
+            <keep-alive>
+                <router-view ></router-view>
+            </keep-alive>
         </div>
     </div>
 </template>
@@ -196,6 +198,8 @@ export default {
     methods: {
        
     },
+    mounted() {
+    },
 }
 </script>
 <style scoped lang="scss">
@@ -206,16 +210,7 @@ export default {
         width: 120px;
         text-align: center;
     }
-    /* 
-    .modalView{
-        position: absolute;
-        width: 90%;
-        left: 5%;
-        top: 20%;
-        min-height: 750px;
-        
-        
-    } */
+
     .btn-close{
         position: absolute;
         right: 152px;

@@ -29,6 +29,24 @@ const router = new VueRouter({
     ]
 })
 
+var commonData = require('./Default_URI')
+var uri = commonData.URI
 
+router.beforeEach(async function(to, from, next) {
+   
+    
+    // if (to.matched.some( function (routeInfo) {
+    //     return routeInfo.meta.requiresAuth
+    //   })) 
+    // {
+        
+    // } 
+
+    next()
+    
+
+    
+    
+})
 
 export default router
