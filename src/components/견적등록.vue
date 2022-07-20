@@ -52,7 +52,7 @@
                             </td>
                         </tr>
                     </table>
-                    <!-- 버튼 -->
+                    <!-- 추가 버튼 -->
                     <div class="btnwrap">
                         <button class="bigbtn" style="margin-right: 5px;" 
                         @click="showModal=!showModal,
@@ -60,6 +60,10 @@
                         AOV추가
                         </button>
                         <button class="bigbtn" style="margin-left: 5px;">ACV추가</button>
+                    </div>
+                    <!-- 수정 버튼 -->
+                    <div class="btnwrap" style="display: none;">
+                        <button class="bigbtn" style="width: 100%; letter-spacing: 20px;">수정</button>
                     </div>
                 </div>
 
