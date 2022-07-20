@@ -36,7 +36,7 @@
                 border-bottom: 1px dashed #d9d9d9;
             ">
                 <div class="scrollwrap">
-                    <table class="scrolltb" style="width: 100%; font-weight: bold;">
+                    <table class="scrolltb" style="width: 100%; font-weight: bold;text-align:center">
                         <tr>
                             <th>견적번호</th>
                             <th>오토마담당자</th>
@@ -46,39 +46,24 @@
                             <th>밸브타입</th>
                             <th class="tdbtn">갑지 / 을지</th>
                         </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        <tr v-for="(item,i) in DB_견적서" :key="i">
+                            <td>{{item.견적번호}}</td>
+                            <td>{{item.담당자}}</td>
+                            <td>{{item.고객사}}</td>
+                            <td>{{item.프로젝트}}</td>
+                            <td>{{item.품목명}}</td>
+                            <td>{{item.밸브타입}}</td>
                             <td class="tdbtn">
                                 <button class="smallbtn">
-                                    <i class="fa-solid fa-print"></i>
+                                    <i class="fas fa-file-excel"></i>
                                 </button>
                                 <button class="smallbtn">
-                                    <i class="fa-solid fa-print"></i>
+                                    <i class="fas fa-file-excel"></i>
                                 </button>
                             </td>
                         </tr>
                         
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="tdbtn">
-                                <button class="smallbtn">
-                                    <i class="fa-solid fa-print"></i>
-                                </button>
-                                <button class="smallbtn">
-                                    <i class="fa-solid fa-print"></i>
-                                </button>
-                            </td>
-                        </tr>
+                       
                     </table>
                 </div>
             </div>
@@ -93,7 +78,7 @@
                 min-height: 220px;
             ">
                 <div class="scrollwrap">
-                    <table class="scrolltb" style="width: 100%; font-weight: bold;">
+                    <table class="scrolltb" style="width: 100%; font-weight: bold; ">
                         <tr>
                             <th></th>
                             <th>견적번호</th>
@@ -152,18 +137,24 @@
     </div>
 </template>
 <script>
-// import DetailModal from './모달/상세입력모달1.vue'
+
 export default {
     components: {
-        // DetailModal,
+        
     },
     data() {
         return {
-
+            DB_견적서:[]
         }
     },
     methods: {
-
+        async select(){
+            const res = await this.axios.get(this.$uri + "/select/estimate?num=*")
+            this.DB_견적서 = res.data
+        }
+    },
+    async mounted() {
+        await this.select();
     },
 }
 </script>

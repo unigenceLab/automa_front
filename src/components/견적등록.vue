@@ -17,46 +17,45 @@
                 <div style="float: left; width: calc(50% - 15px); height: auto;">
                     <!-- 테이블 -->
                     <table style="width: 100%; height: auto;">
-                        <tr>
+                        <!-- <tr>
                             <td class="center">
                                 견적번호
                             </td>
                             <td>
-                                <input type="text">
+                                <input type="text" v-model="등록데이터.견적번호">
                             </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td class="center">
                                 오토마 담당자
                             </td>
                             <td>
-                                <input type="text">
+                                <input type="text"  v-model="등록데이터.담당자"  @input="insert()">
                             </td>
                         </tr>
                         <tr>
                             <td class="center">고객사</td>
                             <td>
-                                <input type="text">
+                                <input type="text"  v-model="등록데이터.고객사" @input="insert()">
                             </td>
                         </tr>
                         <tr>
                             <td class="center">프로젝트</td>
                             <td>
-                                <input type="text">
+                                <input type="text"  v-model="등록데이터.프로젝트" @input="insert()">
                             </td>
                         </tr>
                         <tr>
                             <td class="center">품목명</td>
                             <td>
-                                <input type="text">
+                                <input type="text"  v-model="등록데이터.품목명" @input="insert()">
                             </td>
                         </tr>
                     </table>
                     <!-- 버튼 -->
                     <div class="btnwrap">
                         <button class="bigbtn" style="margin-right: 5px;" 
-                        @click="showModal=!showModal,
-                                $router.push({path:'/register/1',query:{sort:'AOV'}}).catch(()=>{})">
+                        @click="addAOV">
                         AOV추가
                         </button>
                         <button class="bigbtn" style="margin-left: 5px;">ACV추가</button>
@@ -67,10 +66,10 @@
                 <table style="float: right; width: calc(50% - 15px); margin-left: 30px;">
                     <tr>
                         <td class="center">
-                            견적유효기간
+                            견적유효기간(일)
                         </td>
                         <td>
-                            <input type="text" value="30일">
+                            <input type="text"  v-model="등록데이터.견적유효기간" @input="insert()">
                         </td>
                     </tr>
                     <tr>
@@ -78,37 +77,37 @@
                             납품장소
                         </td>
                         <td>
-                            <input type="text" value="추후협의">
+                            <input type="text"  v-model="등록데이터.납품장소" @input="insert()">
                         </td>
                     </tr>
                     <tr>
                         <td class="center">지불조건</td>
                         <td>
-                            <input type="text" value="정기결제">
+                            <input type="text"  v-model="등록데이터.지불조건" @input="insert()">
                         </td>
                     </tr>
                     <tr>
                         <td class="center">검사</td>
                         <td>
-                            <input type="text" value="제외">
+                            <input type="text"  v-model="등록데이터.검사" @input="insert()">
                         </td>
                     </tr>
                     <tr>
                         <td class="center">도장</td>
                         <td>
-                            <input type="text" value="Maker STD.">
+                            <input type="text"  v-model="등록데이터.도장" @input="insert()">
                         </td>
                     </tr>
                     <tr>
                         <td class="center">포장</td>
                         <td>
-                            <input type="text" value="Box or Pallet">
+                            <input type="text"  v-model="등록데이터.포장" @input="insert()">
                         </td>
                     </tr>
                     <tr>
                         <td class="center">취소수수료</td>
                         <td>
-                            <textarea name="" id="">설계중 : 발주금액의 20%, 자재 발주 후 : 50%, 자재 가공완료 후 : 70%, 제품 조립 완료 후: 100%</textarea>
+                            <textarea  v-model="등록데이터.취소수수료" @input="insert()"></textarea>
                         </td>
                     </tr>
                 </table>
@@ -119,9 +118,8 @@
             style="
                 padding: 10px 0;
             ">
-                <table style="width: 100%; font-weight: bold;">
+                <table style="width: 100%; font-weight: bold;text-align:center">
                     <tr>
-                        <th></th>
                         <th>견적번호</th>
                         <th>오토마담당자</th>
                         <th>고객사</th>
@@ -130,39 +128,27 @@
                         <th>밸브타입</th>
                         <th>입력</th>
                     </tr>
-                    <tr>
-                        <td class="throle">
-                            ACV컨트롤밸브
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                   <tr v-for="(item,i) in DB_견적서" :key="i" style="cursor:pointer">
+                        <td @click="editEs(item.견적번호)">{{item.견적번호}}</td>
+                        <td @click="editEs(item.견적번호)">{{item.담당자}}</td>
+                        <td @click="editEs(item.견적번호)">{{item.고객사}}</td>
+                        <td @click="editEs(item.견적번호)">{{item.프로젝트}}</td>
+                        <td @click="editEs(item.견적번호)">{{item.품목명}}</td>
+                        <td @click="editEs(item.견적번호)">{{item.밸브타입}}</td>
                         <td class="tdbtn">
-                            <button class="prebtn">
-                                입력
+                            <button class="prebtn"
+                                    @click="showModal=!showModal,
+                                    $router.push({path:'/register/edit/2?num='+item.견적번호}).catch(()=>{})">
+                                수정
+                            </button>
+                            <button class="prebtn"
+                                    @click="수정모드 = !수정모드 , 등록데이터 = {}">
+                                취소
                             </button>
                         </td>
                     </tr>
                     
-                    <tr>
-                        <td class="throle">
-                            AOV자동밸브
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="tdbtn">
-                            <button class="prebtn">
-                                입력
-                            </button>
-                        </td>
-                    </tr>
+                   
                 </table>
             </div>
 
@@ -173,7 +159,7 @@
             <button>
                 <i class="fas fa-window-close fa-3x" 
                 @click="showModal=!showModal,
-                $router.push({path:'/register'}).catch(()=>{})">
+                $router.push({path:'/register'}).catch(()=>{}),select()">
                 </i>
             </button>
         </div>
@@ -192,13 +178,46 @@ export default {
     },
     data() {
         return {
-            showModal:false
+            showModal:false,
+            등록데이터:{
+            //     견적유효기간:'30',
+            //     납품장소:'추후협의',
+            //     지불조건:'정기결제',
+            //     검사:'제외',
+            //     도장:'Maker STD.',
+            //     포장:'Box Or Pallet',
+            //     취소수수료:'설계중 : 발주금액의 20%, 자재 발주 후 : 50%, 자재 가공완료 후 : 70%, 제품 조립 완료 후: 100%'
+            
+            },
+            DB_견적서:[],
+            수정모드:false,
+           
         }
     },
     methods: {
-       
+       async select(){
+            const res = await this.axios.get(this.$uri + "/select/estimate?num=*")
+            this.DB_견적서 = res.data
+        },
+        addAOV(){
+            this.showModal=!this.showModal,
+            this.$router.push({name:'modal1',path:'/register/1',params:{state:'add',sort:"AOV",data:this.등록데이터}}).catch(()=>{})
+        },
+       async editEs(견적번호){
+            this.수정모드 = true
+            const res = await this.axios.post(this.$uri + "/select/estimate",{견적번호:견적번호})
+            this.등록데이터 = res.data[0]
+        },
+        async insert(){
+            if(this.수정모드==true){
+                 await this.axios.post(this.$uri + "/insert",this.등록데이터);
+            }
+        }
     },
-    mounted() {
+   async mounted() {
+        await this.select()
+
+    
     },
 }
 </script>

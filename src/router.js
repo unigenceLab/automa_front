@@ -19,10 +19,10 @@ const router = new VueRouter({
         children:[
             {path:"EScheck", component:견적조회},
             {path:"register",component:견적등록,children:[
-                {path:"1", component:상세입력모달1},
-                {path:"2", component:상세입력모달2},
-                {path:"3", component:상세입력모달3},
-                {path:"4", component:상세입력모달4},
+                {name:'modal1',path:":state/1", component:상세입력모달1},
+                {path:":state/2", component:상세입력모달2},
+                {path:":state/3", component:상세입력모달3},
+                {path:":state/4", component:상세입력모달4},
             ]},
         ]},
 

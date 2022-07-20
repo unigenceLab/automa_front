@@ -281,7 +281,7 @@
                 
                 <!-- 이전/다음 버튼 -->
                 <div style="display: flex; justify-content: space-between; padding: 10px 0;">
-                    <button class="prebtn" @click="$router.push({path:'/register/1'})">이전</button>
+                    <button class="prebtn" @click="$router.push({path:`/register/${$route.params.state}/1?num=${$route.query.num}`})">이전</button>
                     <button class="prebtn" @click="nullCheck">다음</button>
                 </div>
 
@@ -339,8 +339,22 @@ export default {
              if(val != true){
                 alert("입력 값이 없습니다")
              }else{
-                this.$router.push({path:'/register/3', query: {num:this.$route.query.num}})
+                this.$router.push({path:`/register/${this.$route.params.state}/3`, query: {num:this.$route.query.num}})
              }
+        }
+    },
+   async activated() {
+        if(this.$route.params.state == 'edit'){
+            const res = await this.axios.get(this.$uri + "/select/second_page_datas?num="+this.$route.query.num)
+            this.bonnet = JSON.parse(res.data.BONNET)[0]
+            this.diaphragm_actuator = JSON.parse(res.data.DIAPHRAGM_ACTUATOR)[0]
+            this.material = JSON.parse(res.data.MATERIAL)[0]
+            this.motor = JSON.parse(res.data.MOTOR)[0]
+            this.motor_actuator = JSON.parse(res.data.MOTOR_ACTUATOR)[0]
+            this.valueTrim = JSON.parse(res.data.VALVE_TRIM)[0]
+
+             const res2 = await this.axios.get(this.$uri + "/select/acc?num="+this.$route.query.num)
+            
         }
     },
 }

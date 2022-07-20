@@ -93,8 +93,8 @@
 
                 <!-- 이전/다음 버튼 -->
                 <div style="display: flex; justify-content: space-between; padding: 10px 0;">
-                    <button class="prebtn" @click="$router.push({path:'/register/2'})">이전</button>
-                    <button class="prebtn" @click="$router.push({path:'/register/4'})">다음</button>
+                    <button class="prebtn" @click="$router.push({path:`/register/${$route.params.state}/2?num=${$route.query.num}`})">이전</button>
+                    <button class="prebtn" @click="$router.push({path:`/register/${$route.params.state}/4?num=${$route.query.num}`})">다음</button>
                 </div>
             </div>
         </div>
@@ -129,6 +129,23 @@ export default {
             item.견적번호 = this.$route.query.num
             item.순번 = (i+1).toString()
             await this.axios.post(this.$uri + "/accesory",item)
+        }
+    },
+     async activated() {
+        if(this.$route.params.state == 'edit'){
+            const res = await this.axios.get(this.$uri + "/select/acc?num="+this.$route.query.num)
+            var arr = res.data
+            arr.filter((e,i)=>{
+                if(i>0){
+                    if(arr[i-1].depth1 == e.depth1){
+                        arr.splice(i,1)
+                    }
+                }
+            })
+            this.selectors = arr
+           
+       
+            
         }
     },
 }
