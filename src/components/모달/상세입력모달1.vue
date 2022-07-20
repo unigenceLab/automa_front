@@ -108,22 +108,20 @@ export default {
         }
     },
     async activated() {
-       // if(this.$route.params.state == 'add'){
-            this.param =  this.$route.params.data
-            var query = this.$route.params.sort
-            if(query == 'AOV'){
-                this.param.밸브타입 = 'AOV자동밸브'
-            }else{
-                this.param.밸브타입 = 'ACV컨트롤밸브'
-            }
-            const res = await this.axios.get(this.$uri + "/getOrderNum")
-            this.param.견적번호 = res.data.toString()
-            await this.axios.post(this.$uri + "/insert",this.param);
-       // }
-        // else if(this.$route.params.state == 'edit'){
-        //     const res = await this.axios.get(this.$uri + "/select/estimate?num="+this.$route.query.num)
-        //     this.param=res.data[0]
-        // }
+        //값 바인딩
+        this.param =  this.$route.params.data
+        var query = this.$route.params.sort
+        if(query == 'AOV'){
+            this.param.밸브타입 = 'AOV자동밸브'
+        }else{
+            this.param.밸브타입 = 'ACV컨트롤밸브'
+        }
+        const res = await this.axios.get(this.$uri + "/getOrderNum")
+        this.param.견적번호 = res.data.toString()
+
+        //등록
+        await this.axios.post(this.$uri + "/insert",this.param);
+   
     },
     
 }

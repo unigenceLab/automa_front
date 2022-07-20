@@ -8,22 +8,21 @@
                 padding: 10px 0;
                 width: 100%;
                 border-bottom: 1px dashed #d9d9d9;
+                margin-left:50px
             ">
                 <div class="searchbox">
                     <span>오토마담당자</span>
-                    <input type="text" class="half">
+                    <input type="text" class="half" v-model="검색.담당자" @input="search(검색.담당자)">
                 </div>
                 <div class="searchbox">
                     <span>고객사</span>
-                    <input type="text" class="half">
+                    <input type="text" class="half" v-model="검색.고객사" @input="search(검색.고객사)">
                 </div>
                 <div class="searchbox">
                     <span>품목명</span>
-                    <input type="text" class="half">
+                    <input type="text" class="half" v-model="검색.품목명" @input="search(검색.품목명)">
                 </div>
-                <button class="prebtn" style="width: 100px; text-align: center; color: #222;">
-                    조회
-                </button>
+                
             </div>
 
             <!-- 마스터 테이블 -->
@@ -46,13 +45,13 @@
                             <th>밸브타입</th>
                             <th class="tdbtn">갑지 / 을지</th>
                         </tr>
-                        <tr v-for="(item,i) in DB_견적서" :key="i">
-                            <td>{{item.견적번호}}</td>
-                            <td>{{item.담당자}}</td>
-                            <td>{{item.고객사}}</td>
-                            <td>{{item.프로젝트}}</td>
-                            <td>{{item.품목명}}</td>
-                            <td>{{item.밸브타입}}</td>
+                        <tr v-for="(item,i) in DB_견적서" :key="i" style="cursor:pointer">
+                            <td @click="getEs(item.견적번호)">{{item.견적번호}}</td>
+                            <td @click="getEs(item.견적번호)">{{item.담당자}}</td>
+                            <td @click="getEs(item.견적번호)">{{item.고객사}}</td>
+                            <td @click="getEs(item.견적번호)">{{item.프로젝트}}</td>
+                            <td @click="getEs(item.견적번호)">{{item.품목명}}</td>
+                            <td @click="getEs(item.견적번호)">{{item.밸브타입}}</td>
                             <td class="tdbtn">
                                 <button class="smallbtn">
                                     <i class="fas fa-file-excel"></i>
@@ -78,56 +77,34 @@
                 min-height: 220px;
             ">
                 <div class="scrollwrap">
-                    <table class="scrolltb" style="width: 100%; font-weight: bold; ">
+                    <table class="scrolltb" style="width: 100%; font-weight: bold;text-align:center ">
                         <tr>
-                            <th></th>
-                            <th>견적번호</th>
-                            <th>오토마담당자</th>
-                            <th>고객사</th>
-                            <th>프로젝트</th>
-                            <th>품목명</th>
-                            <th>밸브타입</th>
-                            <th class="tdbtn">수정 / 삭제</th>
+                            <th>견적유효기간(일)</th>
+                            <th>납품장소</th>
+                            <th>지불조건</th>
+                            <th>검사</th>
+                            <th>도장</th>
+                            <th>포장</th>
+                            <th>취소수수료</th>
+                            <th class="tdbtn">삭제</th>
                         </tr>
-                        <tr>
-                            <td class="throle">
-                                ACV컨트롤밸브
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        <tr v-for="(item,i) in 세부견적" :key="i">
+                            
+                            <td>{{item.견적유효기간}}</td>
+                            <td>{{item.납품장소}}</td>
+                            <td>{{item.지불조건}}</td>
+                            <td>{{item.검사}}</td>
+                            <td>{{item.도장}}</td>
+                            <td>{{item.포장}}</td>
+                            <td>{{item.취소수수료}}</td>
                             <td class="tdbtn">
-                                <button class="smallbtn2" style="margin-right: 5px;">
-                                    수정
-                                </button>
-                                <button class="smallbtn2">
+                              
+                                <button class="smallbtn2" @click="deleteEs(item.견적번호)">
                                     삭제
                                 </button>
                             </td>
                         </tr>
-                        
-                        <tr>
-                            <td class="throle">
-                                AOV자동밸브
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="tdbtn">
-                                <button class="smallbtn2" style="margin-right: 5px;">
-                                    수정
-                                </button>
-                                <button class="smallbtn2">
-                                    삭제
-                                </button>
-                            </td>
-                        </tr>
+               
                     </table>
                 </div>
                 
@@ -144,13 +121,29 @@ export default {
     },
     data() {
         return {
-            DB_견적서:[]
+            DB_견적서:[],
+            세부견적:{},
+            검색:{}
         }
     },
     methods: {
         async select(){
             const res = await this.axios.get(this.$uri + "/select/estimate?num=*")
             this.DB_견적서 = res.data
+        },
+        async getEs(견적번호){
+            const res = await this.axios.post(this.$uri + "/select/estimate",{견적번호:견적번호})
+            this.세부견적 = res.data
+        },
+        async deleteEs(견적번호){
+            await this.axios.post(this.$uri + "/delete",{견적번호:견적번호})
+            this.세부견적 = {}
+            await this.select()
+        },
+        async search(str){
+            this.DB_견적서 = []
+            const res = await this.axios.get(this.$uri + "/search?str=" + str)
+           this.DB_견적서 = res.data
         }
     },
     async mounted() {
